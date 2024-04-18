@@ -6,9 +6,28 @@
   <body>
     <h1>Padlet Automation</h1>
     <form id="padlet-form">
-      <!-- Form fields remain the same -->
-      <button type="submit" id="start-btn">Start</button>
-      <button type="button" id="stop-btn" disabled>Stop</button>
+      <label for="num_repetitions">Number of repetitions for ﷽:</label>
+      <input type="number" id="num_repetitions" name="num_repetitions" value="9000"><br>
+
+      <label for="subject">Subject:</label>
+      <input type="text" id="subject" name="subject" value="test"><br>
+
+      <label for="subject_repetitions">Number of times to repeat subject:</label>
+      <input type="number" id="subject_repetitions" name="subject_repetitions" value="1000"><br>
+
+      <label for="request_TP">Number of requests:</label>
+      <input type="number" id="request_TP" name="request_TP" value="10"><br>
+
+      <label for="wallidreq">Wall ID (0 for manual, 1 to scrape):</label>
+      <input type="number" id="wallidreq" name="wallidreq" value="1"><br>
+
+      <label for="authoridreq">Author ID (0 for manual, 1 to scrape):</label>
+      <input type="number" id="authoridreq" name="authoridreq" value="1"><br>
+
+      <label for="url">URL (required if scraping Wall ID or Author ID):</label>
+      <input type="text" id="url" name="url"><br>
+
+      <button type="submit">Submit</button>
     </form>
     <script>
       const form = document.getElementById('padlet-form');
