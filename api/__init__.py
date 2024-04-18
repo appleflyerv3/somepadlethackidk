@@ -36,7 +36,7 @@ def extract_values(url):
 
 def make_request(session, num_repetitions, repeated_subject, wallidreq, authoridreq):
     body_content = "﷽" * num_repetitions
-    url = "https://padlet.com/api/5/wishes"
+    proxy_url = f"https://somepadlethackidk.vercel.app/api/cors-proxy?url=https://padlet.com/api/5/wishes"
     headers = {
         "Authorization": "Bearer",
     }
@@ -52,7 +52,7 @@ def make_request(session, num_repetitions, repeated_subject, wallidreq, authorid
         "subject": repeated_subject,
     }
 
-    response = session.post(url, json=data, headers=headers)
+    response = session.post(proxy_url, json=data, headers=headers)
     return response.status_code, response.json()
 
 def main(event, context):
