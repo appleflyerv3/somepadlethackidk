@@ -5,6 +5,7 @@ import re
 import json
 from bs4 import BeautifulSoup
 import time
+import signal
 
 def extract_values(url):
     try:
@@ -92,7 +93,15 @@ def main(event, context):
 
             with ThreadPoolExecutor(max_workers=NUMBER_OF_REQUESTS) as executor:
                 successful_attempts = 0
-                while True:
+                should_stop = False  # Flag to control the loop
+
+                def handle_signal(signum, frame):
+                    nonlocal should_stop
+                    should_stop = True
+
+                signal.signal(signal.SIGTERM, handle_signal)
+
+                while not should_stop:
                     futures = [
                         executor.submit(make_request, session, num_repetitions, repeated_subject, wallidreq, authoridreq)
                         for _ in range(NUMBER_OF_REQUESTS)
